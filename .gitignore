@@ -1,0 +1,6 @@
+# Ignore target folder
+target
+# Ignore .idea configuration folder
+.idea
+# Ignore cargo lock since current project is a library
+Cargo.lock
