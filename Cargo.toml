@@ -8,3 +8,12 @@ description = "A library to genenerate work with pandoc ast"
 
 [dependencies]
 serde = { version = "1.0.130", features = ["derive"] }
+serde_json = "1.0.94"
+
+[[bin]]
+name="pretty"
+path= "src/pretty.rs"
+
+[[bin]]
+name="example"
+path= "src/example.rs"

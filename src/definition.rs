@@ -33,13 +33,16 @@ pub enum Block {
     BlockQuote(Vec<Block>),
     OrderedList(ListAttributes, Vec<Vec<Block>>),
     BulletList(Vec<Vec<Block>>),
-    DefinitionList(Vec<(Vec<Inline>, Vec<Vec<Block>>)>),
+    DefinitionList(Vec<Definition>),
     Header(u8, Attr, Vec<Inline>),
     HorizontalRule,
     Table(Attr, Caption, Vec<ColSpec>, TableHead, Vec<TableBody>, TableFoot),
     Div(Attr, Vec<Block>),
     Null,
 }
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Definition(pub Vec<Inline>, pub Vec<Vec<Block>>);
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(tag = "t", content = "c")]
