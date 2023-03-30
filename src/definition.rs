@@ -37,6 +37,7 @@ pub enum Block {
     Header(u8, Attr, Vec<Inline>),
     HorizontalRule,
     Table(Attr, Caption, Vec<ColSpec>, TableHead, Vec<TableBody>, TableFoot),
+    Figure(Attr, Caption, Vec<Block>),
     Div(Attr, Vec<Block>),
     Null,
 }
