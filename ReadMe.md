@@ -7,7 +7,7 @@ This library is created to create [Pandoc](https://pandoc.org/) filters with [Ru
 To use this library add the line:
 
 ```toml
-pandoc = { git = "https://github.com/rloic/pandoc", branch = "pandoc/1.22.1" }
+pandoc = { git = "https://github.com/rloic/pandoc", branch = "pandoc/1.23" }
 ```
 
 To your cargo file.
