@@ -1,7 +1,7 @@
 use std::collections::BTreeMap;
 use serde::{Serialize, Deserialize};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Pandoc {
     #[serde(rename = "pandoc-api-version")]
     pub version: Vec<u32>,
@@ -11,7 +11,7 @@ pub struct Pandoc {
 
 pub type Meta = BTreeMap<String, MetaValue>;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(tag = "t", content = "c")]
 pub enum MetaValue {
     MetaMap(Meta),
@@ -37,6 +37,7 @@ pub enum Block {
     Header(u8, Attr, Vec<Inline>),
     HorizontalRule,
     Table(Attr, Caption, Vec<ColSpec>, TableHead, Vec<TableBody>, TableFoot),
+    Figure(Attr, Caption, Vec<Block>),
     Div(Attr, Vec<Block>),
     Null,
 }
