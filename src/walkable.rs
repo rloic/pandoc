@@ -1,5 +1,5 @@
 use crate::definition::{Block, Caption, Cell, Citation, Definition, Inline, Meta, MetaValue, Pandoc, Row, TableBody, TableFoot, TableHead};
-use crate::definition::Block::{BlockQuote, BulletList, DefinitionList, Div, Header, LineBlock, OrderedList, Para, Plain, Table};
+use crate::definition::Block::{BlockQuote, BulletList, DefinitionList, Div, Figure, Header, LineBlock, OrderedList, Para, Plain, Table};
 use crate::definition::Inline::{Cite, Emph, Image, Link, Note, Quoted, SmallCaps, Span, Strikeout, Strong, Subscript, Superscript};
 use crate::definition::MetaValue::{MetaBlocks, MetaInlines, MetaList, MetaMap};
 
@@ -188,7 +188,8 @@ impl Walkable<Inline> for Block {
             Header(lvl, attr, ils) => Header(lvl, attr, ils.walk(f)),
             Table(attr, caption, spec, t_head, t_body, t_foot) => {
                 Table(attr, caption.walk(f), spec, t_head.walk(f), t_body.walk(f), t_foot.walk(f))
-            }
+            },
+            Figure(attr, caption, ils) => Figure(attr, caption, ils.walk(f)),
             Div(attr, blks) => Div(attr, blks.walk(f)),
             _ => self
         }
@@ -208,7 +209,8 @@ impl Walkable<Inline, Inlines> for Block {
             Header(lvl, attr, ils) => Header(lvl, attr, ils.walk(f)),
             Table(attr, caption, spec, t_head, t_body, t_foot) => {
                 Table(attr, caption.walk(f), spec, t_head.walk(f), t_body.walk(f), t_foot.walk(f))
-            }
+            },
+            Figure(attr, caption, ils) => Figure(attr, caption, ils.walk(f)),
             Div(attr, blks) => Div(attr, blks.walk(f)),
             _ => self
         }
@@ -228,7 +230,8 @@ impl Walkable<Block> for Block {
             Header(lvl, attr, ils) => Header(lvl, attr, ils.walk(f)),
             Table(attr, caption, spec, t_head, t_body, t_foot) => {
                 Table(attr, caption.walk(f), spec, t_head.walk(f), t_body.walk(f), t_foot.walk(f))
-            }
+            },
+            Figure(attr, caption, ils) => Figure(attr, caption, ils.walk(f)),
             Div(attr, blks) => Div(attr, blks.walk(f)),
             _ => self
         };
@@ -249,7 +252,8 @@ impl Walkable<Block, Blocks> for Block {
             Header(lvl, attr, ils) => Header(lvl, attr, ils.walk(f)),
             Table(attr, caption, spec, t_head, t_body, t_foot) => {
                 Table(attr, caption.walk(f), spec, t_head.walk(f), t_body.walk(f), t_foot.walk(f))
-            }
+            },
+            Figure(attr, caption, ils) => Figure(attr, caption, ils.walk(f)),
             Div(attr, blks) => Div(attr, blks.walk(f)),
             _ => self
         }
