@@ -38,8 +38,7 @@ pub enum Block {
     HorizontalRule,
     Table(Attr, Caption, Vec<ColSpec>, TableHead, Vec<TableBody>, TableFoot),
     Figure(Attr, Caption, Vec<Block>),
-    Div(Attr, Vec<Block>),
-    Null,
+    Div(Attr, Vec<Block>)
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
